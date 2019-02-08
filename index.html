@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Добриво</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--favicon [-->
+
+    <!--] favicon-->
+
+    <!--font [-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:300,300i,400,400i,500,500i,700,700i&amp;subset=cyrillic"
+          rel="stylesheet">
+    <!--] font-->
+
+    <!--styles [-->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/swiper.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <!--] styles-->
+
+</head>
+
+<body>
+
+<div id="app" class="container" @click="closePopup">
+    <header class="header ">
+        <div class="wrapper">
+            <div class="first-line">
+                <h2 class="h2-logo">ДОБРИВО</h2>
+                <div class="first-line__right">
+                    <nav class="top-nav">
+                        <a class="top-nav__link" href="">ОПЛАТА И ДОСТАВКА</a>
+                        <a class="top-nav__link" href="">НОВОСТИ</a>
+                        <a class="top-nav__link" href="">СПРАВОЧНИК</a>
+                        <a class="top-nav__link" href="">СЕРТИФИКАТЫ</a>
+                    </nav>
+                    <select class="lang-check__wrap hidden" :class="{visible: showFade}">
+                        <option
+                                v-for="(lang, i) in langs"
+                                class="lang-check"
+                                :class="[
+                                    'lang-check__'+lang.lang,
+                                    {active : lang.langActive}
+                                ]"
+                                :id="i+'-item'"
+                                @click.prevent="activate"
+                        >
+                            {{lang.lang}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="second-line">
+                <nav class="main-nav">
+                    <ul class="main-nav__list">
+                        <li class="main-nav__item">
+                            <a href="" class="main-nav__link">НАГРО-УДОБРЕНИЕ</a>
+                        </li>
+                        <li class="main-nav__item">
+                            <a href="" class="main-nav__link">БИОДИЗЕЛЬ</a>
+                        </li>
+                        <li class="main-nav__item">
+                            <a href="" class="main-nav__link">СИЛКО</a>
+                        </li>
+                        <li class="main-nav__item">
+                            <a href="" class="main-nav__link">ИНТЕРНЕТ-МАГАЗИН</a>
+                        </li>
+                        <li class="main-nav__item">
+                            <a href="" class="main-nav__link">ВОПРОСЫ-ОТВЕТЫ</a>
+                        </li>
+                        <li class="main-nav__item">
+                            <a href="" class="main-nav__link">КОНТАКТЫ</a>
+                        </li>
+                    </ul>
+                </nav>
+                <button class="basket-btn">
+                    КОРЗИНА
+                </button>
+            </div>
+            <div class="h1-wrap">
+                <h1 class="h1">
+                    <span class="h1-first">органическое</span>
+                    <span class="h1-second">нано-удобрение</span>
+                    <span class="h1-third">добриво</span>
+                </h1>
+            </div>
+        </div>
+        <swiper
+                class="swiper"
+                ref="awesomeSwiperA"
+                :options="swiperOptionA"
+                @set-translate="onSetTranslate">
+            <!-- slides -->
+            <swiper-slide><img src="img/bg1.jpg" alt=""></swiper-slide>
+            <swiper-slide><img src="img/bg2.jpg" alt=""></swiper-slide>
+            <!-- Optional controls -->
+            <div class="swiper-pagination"  slot="pagination"></div>
+            <div class="swiper-button-prev" slot="button-prev"></div>
+            <div class="swiper-button-next" slot="button-next"></div>
+        </swiper>
+    </header>
+    <section class="section">
+        <div class="wrapper">
+            <div class="left-info__wrap">
+                <div class="left-info__top">
+                    <div class="left-info__img">
+                        <img src="img/product.png" alt="">
+                    </div>
+                    <ul class="left-info__list">
+                        <li class="left-info__item">
+                            <p class="info-item__title">ПРИРОСТ УРОЖАЯ</p>
+                            <p class="info-item__subt">в сравнении с химическим удобрением</p>
+                            <p class="info-item__count">30%-250%</p>
+                        </li>
+                        <li class="left-info__item">
+                            <p class="info-item__title">ЭКОНОМИЯ</p>
+                            <p class="info-item__subt">химических удобрений в хозяйстве</p>
+                            <p class="info-item__count">до 70%</p>
+                        </li>
+                        <li class="left-info__item">
+                            <p class="info-item__title">РОСТ КОРНЕВОЙ</p>
+                            <p class="info-item__subt">системы растений при использовании</p>
+                            <p class="info-item__count">в 3-10раз</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="left-info__bottom">
+                    <div class="knowmore-top">
+                        <p class="knowmore-top__left">
+                            Хотитите<br>
+                            трали-вали<br>
+                            ла-лала?
+                        </p>
+                        <p class="knowmore-top__right">
+                            узнайте<br>
+                            о нагро больше!
+                        </p>
+                    </div>
+                    <div class="knowmore-bottom">
+                        <a href="" class="knowmore-btn">узнать больше</a>
+                    </div>
+                </div>
+            </div>
+            <div class="counter">
+                <div class="counter-inner">
+                    <h2 class="counter-title">ПОСЧИТАЙТЕ ПРИБЫЛЬ</h2>
+                    <h3 class="counter-subtitle"><span>ДОБРИВО</span> ЭФФЕКТИВНЕЕ ХИМИИ</h3>
+                    <div class="form-wrap">
+                        <form action="">
+                            <div class="form-data">
+                                <label for="culture">Выберите культуру</label>
+                                <select class="form-input" name="culture" id="culture" ref="culture" v-model="culture">
+                                    <option value="3100">Пшеница ≈ 3100 грн / т</option>
+                                    <option value="2800">Ячмень ≈ 2800 грн / т</option>
+                                    <option value="2950">Рожь ≈ 2950 грн / т</option>
+                                </select>
+                            </div>
+                            <div class="form-data">
+                                <label for="yield">Урожайность, ц/га</label>
+                                <input class="form-input" id="yieldValue" ref="yieldValue"  v-model="yieldValue" type="text" @input.prevent="validateInput">
+                            </div>
+                            <div class="form-data">
+                                <label for="count">Стоимость хим. удобрения, грн/га</label>
+                                <input class="form-input" id="count" ref="count"  v-model="count" type="text" @input.prevent="validateInput">
+                            </div>
+                            <div class="form-data">
+                                <label for="square">Посевная площадь, га</label>
+                                <input class="form-input" id="square" ref="square" v-model="square"  type="text" @input.prevent="validateInput">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="profit-wrap">
+                        <p class="profit-text">Прибыль от ДОБРИВА</></p>
+                        <p class="profit-amount hidden" :class="{visible: showFade}">{{splittedAmount}}</p>
+                        <p class="profit-currency">грн</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <div id="impressum" :class="{ show_me: showWindow }" class="desc">
+        <p>Недопустимый ввод!</p>
+        <p>Пожалуйста, вводите в поля ввода только цыфры!</p>
+        <span id="close_impressum" @click="showWindow=false"></span>
+    </div>
+</div>
+
+
+
+<!--scripts [-->
+
+<script src="js/swiper.js"></script>
+<script src="js/vue.min.js"></script>
+<script src="js/vue-awesome-swiper.js"></script>
+<script src="js/main.js"></script>
+<!--] scripts-->
+
+</body>
+</html>
