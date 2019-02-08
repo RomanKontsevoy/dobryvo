@@ -91,8 +91,7 @@
         <swiper
                 class="swiper"
                 ref="awesomeSwiperA"
-                :options="swiperOptionA"
-                @set-translate="onSetTranslate">
+                :options="swiperOptionA" >
             <!-- slides -->
             <swiper-slide><img src="img/bg1.jpg" alt=""></swiper-slide>
             <swiper-slide><img src="img/bg2.jpg" alt=""></swiper-slide>
@@ -173,8 +172,8 @@
                         </form>
                     </div>
                     <div class="profit-wrap">
-                        <p class="profit-text">Прибыль от ДОБРИВА</></p>
-                        <p class="profit-amount hidden" :class="{visible: showFade}">{{splittedAmount}}</p>
+                        <p class="profit-text">Прибыль от ДОБРИВА</p>
+                        <p class="profit-amount hidden" v-bind:class="{visible: showFade}">{{splittedAmount}}</p>
                         <p class="profit-currency">грн</p>
                     </div>
                 </div>

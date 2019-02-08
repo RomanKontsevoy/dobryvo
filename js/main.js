@@ -2,8 +2,6 @@
 
     Vue.use(window.VueAwesomeSwiper);
 
-    console.log(window.VueAwesomeSwiper);
-
     var app = new Vue({
         el: '#app',
         components: {
@@ -57,7 +55,7 @@
                 var re = /\d{1,3}(?=(\d{3})+(?!\d))/g;
                 return String(amount).replace(re, '$&\u00a0');
             },
-            swiperA() {
+            swiperA: function () {
                 return this.$refs.awesomeSwiperA.swiper
             }
         },
@@ -85,33 +83,31 @@
                 if (!isValid) {
                     this[e.target.id] = value.replace(/\D/g, "");
                     if (value === '') {
-                        e.target.style.outline = "1px dashed #f00";
-                        e.target.style.outlineOffset = "2px";
+                        e.target.classList.add('outlines');
+                        // e.target.style.outline = "1px dashed #f00";
+                        // e.target.style.outlineOffset = "2px";
                         e.target.placeholder = 'Введите числовое значение'
                     } else {
                         this.showWindow = true;
                     }
+                } else {
+                    if (e.target.style) {
+                        console.log(e.target.style);
+                        e.target.classList.remove('outlines');
+                    }
                 }
+
             },
             showHidden: function () {
                 var hidden = document.querySelectorAll('.hidden');
                 var ctx = this;
-                [].forEach.call(hidden, function (el) {
-                    ctx.showFade = true;
-                })
+                ctx.showFade = true;
             },
-            onSetTranslate() {
-                console.log('onSetTranslate');
-            }
         },
         mounted: function () {
             this.$nextTick(function () {
-                console.log('this is swiper A instance object', this.swiperA);
-
                 var ctx = this;
-                document.addEventListener("DOMContentLoaded", function () {
-                    ctx.showHidden();
-                });
+                ctx.showHidden();
             })
         }
     });
